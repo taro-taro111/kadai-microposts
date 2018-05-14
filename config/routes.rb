@@ -8,11 +8,14 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   resources :users, only: [:index, :show, :new, :create] do
     member do #resourcesのオプション（idでページを特定）
-      get :likes
+      get :followings
       get :followers
+      get :likes
     end
   end
   
-  resources :microposts, only: [:create, :destroy]
+  resources :microposts, only: [:create, :destroy] 
   resources :relationships, only: [:create, :destroy]
+  
+  resources :favorites, only: [:create, :destroy]
 end
